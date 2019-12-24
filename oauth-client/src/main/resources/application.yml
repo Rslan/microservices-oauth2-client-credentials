@@ -1,0 +1,44 @@
+server:
+  port: 8762
+
+request:
+  timeout:
+    seconds: 5
+
+api-gateway:
+  uri: http://localhost:8760
+  oauth-token: oauth/token
+  oauth-resource: oauth-resource
+
+oauth-resource:
+  uri:
+    public: ${api-gateway.uri}/${api-gateway.oauth-resource}/api/public
+    private: ${api-gateway.uri}/${api-gateway.oauth-resource}/api/private
+    private-scoped: ${api-gateway.uri}/${api-gateway.oauth-resource}/api/private-scoped
+
+spring:
+  application:
+    name: oauth-client
+  security:
+    oauth2:
+      client:
+        registration:
+          auth0:
+            authorization-grant-type: client_credentials
+            client-id: {CLIENT_ID}
+            client-secret: {CLIENT_SECRET}
+        provider:
+          auth0:
+            token-uri: ${api-gateway.uri}/${api-gateway.oauth-token}
+
+info:
+  app:
+    name: ${spring.application.name}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info

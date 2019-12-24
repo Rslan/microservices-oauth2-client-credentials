@@ -1,0 +1,43 @@
+server:
+  port: 8760
+
+api-gateway:
+  uri: http://localhost:${server.port}
+  oauth-token:
+    path: /oauth/token
+    cached:
+      path: /cached
+    expiration-skew-sec: 5
+
+spring:
+  application:
+    name: gateway
+  redis:
+    host: localhost
+  cloud:
+    gateway:
+      routes:
+        - id: oauth-resource
+          uri: http://localhost:8761/oauth-resource
+          predicates:
+            - Path=/oauth-resource/**
+          filters:
+            - StripPrefix=1
+  security:
+    oauth2:
+        provider:
+          auth0:
+            audience: {API_IDENTIFIER}
+            token-uri: https://{DOMAIN}/oauth/token
+
+info:
+  app:
+    name: ${spring.application.name}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info

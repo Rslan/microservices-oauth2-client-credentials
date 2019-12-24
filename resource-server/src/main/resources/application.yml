@@ -1,0 +1,14 @@
+server:
+  port: 8761
+
+auth0:
+  # API Identifier for our Auth0 API
+  audience: {API_IDENTIFIER}
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # The domain of our Auth0 tenant. Note the trailing slash is important!
+          issuer-uri: https://{DOMAIN}/

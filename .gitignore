@@ -1,0 +1,50 @@
+# LOGS / TMP #
+###################
+.attach_pid*
+**/tmp/*
+**/logs/*
+**/log/*
+*.log
+*.log.json
+
+
+# OS #
+###################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+### STS ###
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache
+
+
+# Eclipse #
+###################
+**/.settings/*
+**/.metadata/*
+.project
+.classpath
+.buildpath
+bin/*
+
+
+# GRADLE #
+###################
+**/.gradle/*
+**/build/*
+**/out/*
+
+
+# Intellij #
+###################
+**/.idea/*
+*.iml
+*.iws

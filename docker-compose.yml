@@ -1,0 +1,12 @@
+version: "3"
+
+networks:
+  default:
+
+services:
+  redis:
+    image: redis
+    networks:
+      default:
+    ports:
+    - 6379:6379

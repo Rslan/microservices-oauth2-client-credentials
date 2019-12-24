@@ -1,0 +1,20 @@
+group = 'com.example.oauth.apigateway'
+version = '1.1'
+
+ext {
+    set('springCloudVersion', "Hoxton.RELEASE")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
