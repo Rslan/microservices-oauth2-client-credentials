@@ -1,4 +1,6 @@
-package com.example.oauth.resourceserver.security;
+package com.example.oauth.apigateway.security;
+
+import static org.springframework.security.oauth2.server.resource.BearerTokenErrorCodes.INVALID_TOKEN;
 
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
@@ -35,6 +37,6 @@ class AudienceValidator implements OAuth2TokenValidator<Jwt> {
         }
 
         return OAuth2TokenValidatorResult.failure(
-                new OAuth2Error("invalid_token", "The required audience is missing", null));
+                new OAuth2Error(INVALID_TOKEN, "The required audience is missing", null));
     }
 }

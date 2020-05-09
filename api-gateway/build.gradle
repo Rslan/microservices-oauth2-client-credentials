@@ -1,8 +1,8 @@
 group = 'com.example.oauth.apigateway'
-version = '1.1'
+version = parent.version
 
 ext {
-    set('springCloudVersion', "Hoxton.RELEASE")
+    set('springCloudVersion', 'Hoxton.SR4')
 }
 
 dependencyManagement {
@@ -13,8 +13,11 @@ dependencyManagement {
 
 dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+
     implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }

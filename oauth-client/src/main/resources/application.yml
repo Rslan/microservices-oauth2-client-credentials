@@ -1,5 +1,11 @@
 server:
   port: 8762
+  servlet:
+    context-path: /oauth-client
+
+logging:
+  level:
+    root: INFO
 
 request:
   timeout:
@@ -18,7 +24,7 @@ oauth-resource:
 
 spring:
   application:
-    name: oauth-client
+    name: OAuth 2.0 Client
   security:
     oauth2:
       client:

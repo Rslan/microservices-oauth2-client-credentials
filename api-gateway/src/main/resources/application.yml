@@ -1,6 +1,10 @@
 server:
   port: 8760
 
+logging:
+  level:
+    root: INFO
+
 api-gateway:
   uri: http://localhost:${server.port}
   oauth-token:
@@ -9,26 +13,32 @@ api-gateway:
       path: /cached
     expiration-skew-sec: 5
 
+auth0:
+  # API Identifier for our Auth0 API
+  audience: {API_IDENTIFIER}
+
 spring:
   application:
-    name: gateway
+    name: API Gateway
   redis:
     host: localhost
   cloud:
     gateway:
       routes:
-        - id: oauth-resource
-          uri: http://localhost:8761/oauth-resource
-          predicates:
-            - Path=/oauth-resource/**
-          filters:
-            - StripPrefix=1
+      - id: resource-server
+        uri: http://localhost:8761/resource-server
+        predicates:
+        - Path=/resource-server/**
   security:
     oauth2:
         provider:
           auth0:
             audience: {API_IDENTIFIER}
             token-uri: https://{DOMAIN}/oauth/token
+        resourceserver:
+          jwt:
+            # The domain of our Auth0 tenant. Note the trailing slash is important!
+            issuer-uri: https://{DOMAIN}/
 
 info:
   app:

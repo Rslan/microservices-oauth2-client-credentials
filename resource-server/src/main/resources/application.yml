@@ -1,14 +1,22 @@
 server:
   port: 8761
+  servlet:
+    context-path: /resource-server
 
-auth0:
-  # API Identifier for our Auth0 API
-  audience: {API_IDENTIFIER}
+logging:
+  level:
+    root: INFO
 
 spring:
+  application:
+    name: OAuth 2.0 Resource Server
   security:
     oauth2:
       resourceserver:
         jwt:
           # The domain of our Auth0 tenant. Note the trailing slash is important!
           issuer-uri: https://{DOMAIN}/
+
+info:
+  app:
+    name: ${spring.application.name}
